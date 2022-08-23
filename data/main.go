@@ -3,7 +3,6 @@ package data
 import (
 	"encoding/json"
 	"fmt"
-	"regexp"
 )
 
 type Response struct {
@@ -38,9 +37,8 @@ func FormatToBody(responseData []byte) string {
 	var body string
 
 	for _, h := range newData.Data.TrackingStatus.Tracking.History {
-		body = body + fmt.Sprintf("%s %s\n", h.EventDate, h.StatusLabel)
+		body = body + fmt.Sprintf("%s %v\n", h.EventDate, h.StatusLabel)
 	}
 
-	res, _ := regexp.Compile(`[^\w]`)
-	return res.ReplaceAllString(body, "")
+	return body
 }

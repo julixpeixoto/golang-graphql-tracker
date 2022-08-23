@@ -16,7 +16,10 @@ func SendEmail(body string) {
 	emailAddress := viper.GetString("EMAIL_ADDRESS")
 	orderNumber := viper.GetString("ORDER_NUMBER")
 	to := []string{emailAddress}
-	subject := fmt.Sprintf("Subject: Status do pedido %s atualizado\n", orderNumber)
+	subject := fmt.Sprintf(`Subject: Status do pedido %s atualizado
+Content-Type: text/plain; charset="UTF-8"
+
+`, orderNumber)
 	message := []byte(subject + body)
 
 	auth := smtp.PlainAuth("", user, password, host)
