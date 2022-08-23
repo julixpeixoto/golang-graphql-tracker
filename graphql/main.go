@@ -17,14 +17,14 @@ func GetData() {
 	request.Header.Set("Content-Type", "application/json")
 
 	if err != nil {
-		print("Error than mount request:", err)
+		println("Error than mount request:", err)
 	}
 
 	client := &http.Client{Timeout: time.Second * 10}
 	response, err := client.Do(request)
 
 	if err != nil {
-		print("Error than request:", err)
+		println("Error than request:", err)
 	}
 
 	defer response.Body.Close()
