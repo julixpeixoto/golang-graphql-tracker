@@ -10,9 +10,8 @@ import (
 	"github.com/spf13/viper"
 )
 
-func GetData() {
+func GetData() []byte {
 	query := getQuery()
-	print(query)
 	request, err := http.NewRequest("POST", viper.GetString("API_URL"), bytes.NewBuffer([]byte(query)))
 	request.Header.Set("Content-Type", "application/json")
 
@@ -29,7 +28,7 @@ func GetData() {
 
 	defer response.Body.Close()
 	data, _ := ioutil.ReadAll(response.Body)
-	print(string(data))
+	return data
 }
 
 func getQuery() string {

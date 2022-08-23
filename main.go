@@ -1,6 +1,7 @@
 package main
 
 import (
+	"webscraping/data"
 	"webscraping/email"
 	"webscraping/graphql"
 
@@ -10,6 +11,7 @@ import (
 func main() {
 	viper.SetConfigFile(".env")
 	viper.ReadInConfig()
-	email.SendEmail("body here")
-	graphql.GetData()
+	responseData := graphql.GetData()
+	body := data.FormatToBody(responseData)
+	email.SendEmail(string(body))
 }
