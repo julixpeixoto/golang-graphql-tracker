@@ -2,6 +2,7 @@ package main
 
 import (
 	"webscraping/data"
+	"webscraping/database"
 	"webscraping/email"
 	"webscraping/graphql"
 
@@ -14,4 +15,6 @@ func main() {
 	responseData := graphql.GetData()
 	body := data.FormatToBody(responseData)
 	email.SendEmail(string(body))
+	database.CreateDatabaseIfNotExists()
+	database.SaveCount(1)
 }
