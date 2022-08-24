@@ -17,15 +17,20 @@ func connect() *sql.DB {
 	return db
 }
 
-func GetCount() *sql.Rows {
+func GetCount() int32 {
+	var value int32
 	db := connect()
-	value, err := db.Query("SELECT value FROM count limit 1")
+	rows, err := db.Query("SELECT value FROM count limit 1")
 
 	if err != nil {
 		println("Ocorreu um erro: ", err)
 	}
 
 	db.Close()
+
+	for rows.Next() {
+		rows.Scan(&value)
+	}
 
 	return value
 }

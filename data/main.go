@@ -26,14 +26,13 @@ type History struct {
 	StatusLabel string `json:"status_label"`
 }
 
-func convertResponseData(response []byte) Response {
+func ConvertResponseData(response []byte) Response {
 	data := Response{}
 	json.Unmarshal(response, &data)
 	return data
 }
 
-func FormatToBody(responseData []byte) string {
-	newData := convertResponseData(responseData)
+func FormatToBody(newData Response) string {
 	var body string
 
 	for _, h := range newData.Data.TrackingStatus.Tracking.History {
