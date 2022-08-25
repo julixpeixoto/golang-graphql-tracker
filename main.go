@@ -1,10 +1,10 @@
 package main
 
 import (
-	"webscraping/data"
-	"webscraping/database"
-	"webscraping/email"
-	"webscraping/graphql"
+	"tracker/data"
+	"tracker/database"
+	"tracker/email"
+	"tracker/graphql"
 
 	"github.com/spf13/viper"
 )
