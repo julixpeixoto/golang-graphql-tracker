@@ -12,6 +12,7 @@ import (
 func main() {
 	viper.SetConfigFile(".env")
 	viper.ReadInConfig()
+	viper.AutomaticEnv()
 	database.CreateDatabaseIfNotExists()
 	responseInBytes := graphql.GetData()
 	responseData := data.ConvertResponseData(responseInBytes)
