@@ -5,6 +5,7 @@ import (
 	"tracker/database"
 	"tracker/email"
 	"tracker/graphql"
+	"tracker/model"
 
 	"github.com/spf13/viper"
 )
@@ -26,7 +27,7 @@ func main() {
 	}
 }
 
-func checkNewEvent(response data.Response) bool {
+func checkNewEvent(response model.Response) bool {
 	events := len(response.Data.TrackingStatus.Tracking.History)
 	countDatabase := database.GetCount()
 

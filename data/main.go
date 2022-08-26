@@ -3,36 +3,16 @@ package data
 import (
 	"encoding/json"
 	"fmt"
+	"tracker/model"
 )
 
-type Response struct {
-	Data Data `json:"data"`
-}
-
-type Data struct {
-	TrackingStatus TrackingStatus `json:"trackingStatus"`
-}
-
-type TrackingStatus struct {
-	Tracking Tracking `json:"tracking"`
-}
-
-type Tracking struct {
-	History []History `json:"history`
-}
-
-type History struct {
-	EventDate   string `json:"event_date"`
-	StatusLabel string `json:"status_label"`
-}
-
-func ConvertResponseData(response []byte) Response {
-	data := Response{}
+func ConvertResponseData(response []byte) model.Response {
+	data := model.Response{}
 	json.Unmarshal(response, &data)
 	return data
 }
 
-func FormatToBody(newData Response) string {
+func FormatToBody(newData model.Response) string {
 	var body string
 
 	for _, h := range newData.Data.TrackingStatus.Tracking.History {
